@@ -1,0 +1,92 @@
+#+TITLE: YouTube Keybindings
+#+AUTHOR: Miguel Hernandez
+#+OPTIONS: toc:t
+
+* YouTube Keybindings
+A browser extension that adds custom keyboard shortcuts to YouTube.
+* Features
+Current keybindings:
+
+| Key | Action                    |
+|-----+---------------------------|
+| h   | Navigate to YouTube Home  |
+| x   | Close the live chat panel |
+
+* Installation
+** Chrome / Chromium-based Browsers
+
+1. Clone or download this repository.
+2. Open your browser and navigate to:
+   =chrome://extensions=
+3. Enable *Developer mode*.
+4. Click *Load unpacked*.
+5. Select the project directory.
+
+The extension will now be active on all =youtube.com= pages.
+
+* Project Structure
+#+begin_example
+.
+├── manifest.json
+├── commands.js
+├── keybindings.js
+└── config.js
+#+end_example
+
+** manifest.json
+Registers the extension and loads the JavaScript files on YouTube pages.
+** keybindings.js
+Provides the =addBinding()= helper used to register keyboard shortcuts.
+#+begin_src javascript
+addBinding(key, command);
+#+end_src
+** commands.js
+Contains the commands that can be triggered by keybindings.
+
+Example:
+
+#+begin_src javascript
+function navigateHome() {
+    window.location.href = "https://youtube.com";
+}
+#+end_src
+** config.js
+Maps keys to commands.
+
+#+begin_src javascript
+addBinding("h", navigateHome);
+addBinding("x", closeLiveChat);
+#+end_src
+
+* Adding Your Own Keybindings
+** Step 1: Create a Command
+Add a new function to =commands.js=.
+
+Example:
+
+#+begin_src javascript
+function goToSubscriptions() {
+    window.location.href = "https://www.youtube.com/feed/subscriptions";
+}
+#+end_src
+** Step 2: Bind a Key
+Add a binding in =config.js=.
+
+Example:
+
+#+begin_src javascript
+addBinding("s", goToSubscriptions);
+#+end_src
+
+Now pressing =s= anywhere on YouTube will open the Subscriptions page.
+
+* Example Configuration
+#+begin_src javascript
+addBinding("h", navigateHome);
+addBinding("x", closeLiveChat);
+addBinding("s", goToSubscriptions);
+#+end_src
+
+* Notes
+- Keybindings are ignored while typing in editable fields.
+- Changes require reloading the extension from the browser's extensions page.
