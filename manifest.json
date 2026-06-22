@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Keybindings",
+    "version": "1.0",
+    "description": "Keybindings for YouTube website",
+    "content_scripts": [
+	{
+	    "matches": ["https://*.youtube.com/*"],
+	    "js": [
+		"commands.js",
+		"keybindings.js",
+		"config.js"
+	    ]
+	}
+    ]
+}
