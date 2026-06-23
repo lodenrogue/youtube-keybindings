@@ -16,3 +16,7 @@ function closeLiveChat() {
 	}
     }
 }
+
+function navigateToSubscriptions() {
+    window.location.href = "https://www.youtube.com/feed/subscriptions";
+}

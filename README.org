@@ -11,6 +11,7 @@ Current keybindings:
 |-----+---------------------------|
 | h   | Navigate to YouTube Home  |
 | x   | Close the live chat panel |
+| s   | Navigate to Subscriptions |
 
 * Installation
 ** Chrome / Chromium-based Browsers
@@ -38,7 +39,7 @@ Registers the extension and loads the JavaScript files on YouTube pages.
 ** keybindings.js
 Provides the =addBinding()= helper used to register keyboard shortcuts.
 #+begin_src javascript
-addBinding(key, command);
+  addBinding(key, command);
 #+end_src
 ** commands.js
 Contains the commands that can be triggered by keybindings.
@@ -46,16 +47,16 @@ Contains the commands that can be triggered by keybindings.
 Example:
 
 #+begin_src javascript
-function navigateHome() {
-    window.location.href = "https://youtube.com";
-}
+  function navigateHome() {
+      window.location.href = "https://youtube.com";
+  }
 #+end_src
 ** config.js
 Maps keys to commands.
 
 #+begin_src javascript
-addBinding("h", navigateHome);
-addBinding("x", closeLiveChat);
+  addBinding("h", navigateHome);
+  addBinding("x", closeLiveChat);
 #+end_src
 
 * Adding Your Own Keybindings
@@ -65,9 +66,9 @@ Add a new function to =commands.js=.
 Example:
 
 #+begin_src javascript
-function goToSubscriptions() {
-    window.location.href = "https://www.youtube.com/feed/subscriptions";
-}
+  function navigateToSubscriptions() {
+      window.location.href = "https://www.youtube.com/feed/subscriptions";
+  }
 #+end_src
 ** Step 2: Bind a Key
 Add a binding in =config.js=.
@@ -75,16 +76,16 @@ Add a binding in =config.js=.
 Example:
 
 #+begin_src javascript
-addBinding("s", goToSubscriptions);
+  addBinding("s", navigateToSubscriptions);
 #+end_src
 
 Now pressing =s= anywhere on YouTube will open the Subscriptions page.
 
 * Example Configuration
 #+begin_src javascript
-addBinding("h", navigateHome);
-addBinding("x", closeLiveChat);
-addBinding("s", goToSubscriptions);
+  addBinding("h", navigateHome);
+  addBinding("x", closeLiveChat);
+  addBinding("s", navigateToSubscriptions);
 #+end_src
 
 * Notes
